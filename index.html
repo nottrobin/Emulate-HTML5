@@ -5,26 +5,41 @@
     <meta charset="utf-8" />
     <title>IE html5 printing test page</title>
     
-    <link rel="stylesheet" href="h5basic.css" />
+    <link rel="stylesheet" href="css/h5basic.css" />
     
-    <!--[if lt IE 9]><script src="emulateHTMLs-ie-yui-loader-shim.js"></script><![endif]-->
-    <!--[if gte IE 9]>--><script src="yui/build/yui/yui-min.js"></script><!--<![endif]-->
-    <!--[if gte IE 9]>--><script src="emulateHTML5-loader.js"></script><!--<![endif]-->
-    <!--[if gte IE 9]>--><script src="emulateHTML5-shim.js"></script><!--<![endif]-->
+    <!--[if lt IE 9]><script src="js/html5shim.js"></script><![endif]-->
+    <!-- Hard Way --
+    <script src="js/YUI/build/yui/yui-min.js"></script>
+    <!--<script src="js/emulatehtml5/loader.js"></script>-->
+    <script src="js/emulatehtml5/standalone.js"></script>
+    <script src="js/emulatehtml5/shim.js"></script>
+    <!----
     <script>
-      YUI().use('emulateHTML5-loader', function(Y) {
-        Y.emulateHTML5.Loader.load(['shim','placeholder','print']);
+      YUI().use('oop',function(Y) {
+        new Y.EmulateHTML5.Loader(['Shim']);
+        Y.log(Y.EmulateHTML5.Shim);
       });
     </script>
+    !-- -->
+    <!-- Easy Way -->
+    <script src="js/emulatehtml5/native-loader.js"></script>
+    <script>
+      EH5.Loader({
+        components: ['Shim'],
+        initializeComponents: false,
+        callback: function(Y) {
+          Y.log('success! Woop!', typeof(Y.EmulateHTML5), typeof(Y.EmulateHTML5.Loader));
+        }
+      });
+    </script>
+    <!-- -->
   </head>
   
   <body>
     <header>
       <h1>Main page header</h1>
     </header>
-	
-	<details>This is a new detail Tag</details>
-
+    
     <article>
       <header>
         <h1>Article heading</h1>
